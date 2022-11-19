@@ -10,7 +10,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="{{url('/')}}">Mi Escuelita</a>
+        <a class="navbar-brand" href="{{url('/home')}}">Mi Escuelita</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -47,14 +47,23 @@
                 <a class="dropdown-item" href="{{url('/especialidades')}}">Consultar</a>
                 <a class="dropdown-item" href="{{url('/especialidad/registrar')}}">Registrar</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-            </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                    {{Auth::user()->name}}
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{url('/profile')}}">Perfil</a>
+                        <form method="POST" action="{{route('logout')}}">
+                            @csrf
+                            <a class="dropdown-item" href="{{url('/logout')}}"
+                                onclick="event.preventDefault();
+                                    this.closest('form').submit();">
+                                {{_('Cerrar sesión')}}
+                            </a>
+                        </form>
+                </div>
+            </div>
         </div>
     </nav>
     <div class="container">

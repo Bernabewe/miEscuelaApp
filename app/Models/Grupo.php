@@ -12,7 +12,7 @@ class Grupo extends Model
 
     use SoftDeletes;
 
-    protected $table = 'especialidades';
+    protected $table = 'grupos';
 
     protected $fillable = [
         'especialidad_id',
